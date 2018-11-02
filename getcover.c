@@ -34,6 +34,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 /*============================================================================
              Global variables, type definitions and prototypes
@@ -162,7 +163,7 @@ static int get_FLAC_cover(FILE *fp, const char *dirpath)
    unsigned char buf[4];
    unsigned int picture_type;
    unsigned int mime_type_length;
-   unsigned char *mime_type;
+   char *mime_type;
    unsigned int description_length;
    unsigned char *description;
    unsigned int picture_width;
@@ -214,7 +215,7 @@ static int get_FLAC_cover(FILE *fp, const char *dirpath)
                 mime_type_length = ((buf[0]<<24)|(buf[1]<<16)|(buf[2]<<8)|buf[3]);
                 if(verbose) printf("  MIME type length = %d\n", mime_type_length);
 
-                mime_type = (unsigned char *) malloc(mime_type_length);
+                mime_type = (char *) malloc(mime_type_length);
                 fread(mime_type, 1, mime_type_length, fp);
                	if(verbose) printf("  MIME type = %s\n", mime_type);
 
@@ -417,4 +418,5 @@ static int get_m4a_cover(FILE *fp, const char *dirpath)
  } /* end of moov search */
  else fseek(fp, offset1-8, SEEK_CUR);
  }
+ return 0;
 }
