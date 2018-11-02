@@ -1,3 +1,4 @@
+/*
  * getcover: Extract picture data from audio files
  * 
  * Copyright (c) 2015 Yasuyuki Suzuki
