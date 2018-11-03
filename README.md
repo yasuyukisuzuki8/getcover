@@ -1,13 +1,13 @@
 # getcover
 
-** getcover - get cover art image from music files **
+## getcover - get cover art image from music files
 
  Supported Formats are:  
   FLAC: Free Lossless Audio Codec  
   ALAC: Apple Lossless Audio Codec (m4a)  
   AAC: Advanced Audio Coding (m4a)  
 
-** Compile: **
+## Compile:
 ```
  $ make  
  $ sudo make install
