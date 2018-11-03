@@ -13,7 +13,7 @@
  $ sudo make install
 ```
 
-** Usage: **
+## Usage:
 ```
  getcover [-v] [-o] [-f basename] path [path [path]...]
 ```
@@ -23,7 +23,7 @@
  *  path: path of the directory which contains music files  
 
  
-** Example: **
+## Example:
 
 To extract a cover art from music files in the current directory:  
 ```
