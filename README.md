@@ -2,6 +2,10 @@
 
 ## getcover - get cover art image from music files
 
+getcover extracts a cover-art image from one of music files in the specified directory and creates an image file named ‘Folder.jpg’ in the same directory. If the image format in the music file is PNG then getcover generates a warning message and creates an image file named ‘Folder.png’.
+
+Note: JPEG format is preferred to PNG format for music files because of smaller size.
+
  Supported Formats are:  
   FLAC: Free Lossless Audio Codec  
   ALAC: Apple Lossless Audio Codec (m4a)  
