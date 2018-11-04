@@ -46,6 +46,6 @@ To extract cover arts from music files in all sub directries of the specified di
 
 To extract cover arts from music files in all sub directories under current directory:  
 ```
- $ find . -type d | xargs getcover
+ $ find . -type d -exec getcover {} \;
 ```
 
