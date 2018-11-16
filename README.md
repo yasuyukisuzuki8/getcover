@@ -39,13 +39,13 @@ Specifiy filename for cover art. Cover.jpg for JPEG data or Cover.png for PNG da
  $ getcover -f Cover .
 ```
 
-To extract cover arts from music files in all sub directries of the specified directory:  
+To extract cover arts from music files in all directories immediately under the current directory:  
 ```
- $ getcover /var/lib/mpd/music/*
+ $ getcover *
 ```
 
-To extract cover arts from music files in all sub directories under current directory:  
+To extract cover arts from music files in all sub directories under the specified directory:  
 ```
- $ find . -type d -exec getcover {} \;
+ $ find /var/lib/mpd/music -type d -exec getcover {} \;
 ```
 
