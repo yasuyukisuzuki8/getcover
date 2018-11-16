@@ -116,10 +116,12 @@ static void lookup(const char *arg)
     FILE *fp;
     char str[10];
     char filepath[MAXPATHLEN];
-    unsigned int size, offset;
+    unsigned int offset;
+    size_t size;
     
     if ((dirp = opendir(arg)) == NULL) {
         fprintf(stderr, "Could not open dir:%s\n", arg);
+        perror("opendir()");
         return;
     }
     
@@ -162,6 +164,8 @@ static void lookup(const char *arg)
                         break;
                     default:
                         if(verbose) (void) printf("Special file: %s\n", dp->d_name);
+                    } else {
+                        perror("lookup()::fopen()");
                     }
             }
     } while (dp != NULL);
@@ -299,6 +303,10 @@ static int get_FLAC_cover(FILE *fp, const char *dirpath)
                 picture_data = malloc(picture_length);
                 fread(picture_data, 1, picture_length, fp);
                 picture_fp = fopen(picture_path, "w");
+                if(picture_fp == NULL) {
+                    perror("get_FLAC_cover()::fopen()");
+                    return DONE;
+                }
                 fwrite(picture_data, 1, picture_length, picture_fp);
                 if(verbose) printf("  Wrote picture to %s\n", picture_path);
                 fclose(picture_fp);
@@ -324,7 +332,8 @@ static int get_m4a_cover(FILE *fp, const char *dirpath)
     unsigned char coffset[5], boxtype[5];
     unsigned int offset1, offset2, offset3, offset4, offset5, covrdata_len;
     unsigned int sum2, sum3, sum4, sum5;
-    int size, flag;
+    int flag;
+    size_t size;
     char picture_path[MAXPATHLEN];
     char flag_data[8];
     unsigned char *picture_data;
@@ -417,6 +426,10 @@ static int get_m4a_cover(FILE *fp, const char *dirpath)
                                             picture_data = malloc(covrdata_len);
                                             fread(picture_data, 1, covrdata_len-8, fp);
                                             picture_fp = fopen(picture_path, "w");
+                                            if(picture_fp == NULL) {
+                                                perror("get_m4a_cover()::fopen()");
+                                                return DONE;
+                                            }
                                             fwrite(picture_data, 1, covrdata_len, picture_fp);
                                             if(verbose) printf("  Wrote picture to %s\n", picture_path);
                                             fclose(picture_fp);
