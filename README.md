@@ -46,6 +46,6 @@ To extract cover arts from music files in all directories immediately under the 
 
 To extract cover arts from music files in all sub directories under the specified directory:  
 ```
- $ find /var/lib/mpd/music -type d -exec getcover {} \;
+ $ sudo find /var/lib/mpd/music -type d -exec getcover {} \;
 ```
 
